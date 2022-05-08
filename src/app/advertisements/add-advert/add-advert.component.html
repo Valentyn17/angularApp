@@ -1,0 +1,38 @@
+<form #form='ngForm' class="mb-4" autocomplete="off" (submit)="addAdvert(form)" >
+        <label class="col-sm-2 col-form-label">Advertisement Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" [(ngModel)]="formModel.Name"
+            placeholder="Enter Advertisement Name" required maxlength="200" />
+        </div>
+        <label class="col-sm-2 col-form-label">Advertisement Description</label>
+        <div class="col-sm-10">
+            <textarea type="text" class="form-control" name="Description" [(ngModel)]="formModel.Description"
+            placeholder="Enter Advertisement Description" maxlength="1000"></textarea>
+        </div>
+        <br>
+        <br>
+        <label class="col-sm-2 col-form-label">Main Photo Link(all links are optional)</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Link1" [(ngModel)]="formModel.Link1 "
+            placeholder="Enter main link here">
+        </div>
+        <label class="col-sm-2 col-form-label">Additional Photo Link</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Link2" [(ngModel)]="formModel.Link2"
+            placeholder="Enter  link here">
+        </div>
+        <label class="col-sm-2 col-form-label">Another Photo Link</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Link3" [(ngModel)]="formModel.Link3"
+            placeholder="Enter link here">
+        </div>
+        <label class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Price"  [(ngModel)]="formModel.Price"
+            placeholder="Enter Price here" required>
+        </div>
+    
+    <button button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="form.invalid" >
+        Add
+    </button>
+</form>
