@@ -13,11 +13,18 @@ export class SharedService {
   getAdvertList():Observable<any[]>{
     return this.http.get<any>(this.ApiUrl+'/Advertisement')
   }
+  getAdvertListSorted():Observable<any[]>{
+    return this.http.get<any>(this.ApiUrl+'/Advertisement/sortByPrice')
+  }
+
+  getAdvertListSortedDesc():Observable<any[]>{
+    return this.http.get<any>(this.ApiUrl+'/Advertisement/sortByPriceDesc')
+  }
   addAdvert(val: any){
     return this.http.post(this.ApiUrl+"/Advertisement", val);
   }
 
-  getAdvertById(val:any){
-    return this.http.get<any>(this.ApiUrl+'/Advertisement'+val)
+  getAdvertById(val:any, fields:boolean){
+    return this.http.get<any>(this.ApiUrl+'/Advertisement/'+val+"?fields="+fields)
   }
 }

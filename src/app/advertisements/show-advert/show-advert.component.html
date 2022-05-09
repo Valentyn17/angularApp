@@ -4,6 +4,48 @@
 data-backdrop="static" data-keyboard="false">
     Add Advertisement
   </button>
+  <button  type="button" class="btn btn-primary float-left m-2"
+  (click)="getSorted()">
+      Sort By Price
+    </button>
+    <button  type="button" class="btn btn-primary float-left m-2"
+  (click)="getSortedDesc()">
+      Sort By Price Descending
+    </button>
+  <div class="col-md-6">
+    <div *ngIf="currentAdvertisement.id">
+      <h4>Advertisement</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentAdvertisement.name }}
+      </div>
+      <div *ngIf="fieldsEnabled==false">
+        <label><strong>Photo Link:</strong></label>
+        {{ currentAdvertisement.photoLink }}
+      </div>
+      <div *ngIf="fieldsEnabled==true">
+        <label><strong>Description:</strong></label>
+        {{ currentAdvertisement.description }}
+      </div>
+      <div *ngIf="fieldsEnabled==true" >
+        <label><strong>Photo Links:</strong></label>
+        <ul *ngFor="let link of currentAdvertisement.photoLinksNames">
+        <li style="list-style-type: none;">{{ link }}</li>
+        </ul>
+      </div>
+      <div>
+        <label><strong>Price:</strong></label>
+        {{ currentAdvertisement.price }}
+      </div>
+      <button  type="button" class="btn btn-primary float-left m-2"
+(click)="getFullAdvert(currentAdvertisement.id)">
+    Get Full Information
+  </button>
+      
+    <div *ngIf="!currentAdvertisement">
+      <br />
+      <p>Please click on a Tutorial...</p>
+    </div>
+  </div>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -34,12 +76,16 @@ data-backdrop="static" data-keyboard="false">
         <tr *ngFor="let dataItem of AdvertList | paginate : {
           itemsPerPage: 10,
           currentPage: page
-        };" >
+        };let i = index
+        "
+        [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(dataItem, i)" >
             <td>{{dataItem.name}}</td>
             <td>{{dataItem.photoLink}}</td>
             <td>{{dataItem.price}}</td>
         </tr>
     </tbody>
+    
   
     <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
 </table>
